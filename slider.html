@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://refreshless.com/nouislider/dist/nouislider.css">
+    <script src="https://refreshless.com/nouislider/dist/nouislider.js"></script>
+</head>
+
+<body>
+    <div id="slider"></div>
+    <h1 id="min"></h1>
+    <h1 id="max"></h1>
+
+    <script>
+        let slider = document.getElementById('slider');
+        let minValue = document.getElementById('min');
+        let maxValue = document.getElementById('max');
+
+        noUiSlider.create(slider, {
+            start: [0, 10],
+            connect: true,
+            step: 1, // Set the step size to 0.1
+            range: {
+                'min': 0,
+                'max': 10
+            }
+        });
+        // Attach the 'update' event listener to the slider
+        slider.noUiSlider.on('update', function (values) {
+            minValue.textContent = Math.round(values[0]);
+            maxValue.textContent = Math.round(values[1]);
+
+            let minval = Math.round(values[0]);
+            let maxval = Math.round(values[1]);
+
+            setTimeout(()=>{
+                console.log(minval, maxval)
+            },2000)
+        });
+    </script>
+</body>
+
+</html>
